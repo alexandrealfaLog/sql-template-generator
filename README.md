@@ -45,7 +45,7 @@ DB_PASSWORD=
 DB_PORT=
 DB_HOST=
 ```
-É possível executar o arquivo up.sh também.
+É possível rodar utilizando o arquivo up.sh
 ---
 
 ## 🧩 Estrutura esperada
