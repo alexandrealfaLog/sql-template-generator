@@ -36,17 +36,21 @@ def write_sql_response_file(output: List[str]) -> None:
     pass
 
 
-def process_template() -> None:
+def process_template(dataset_id: str = '') -> None:
     output = []
 
     for row in get_datasets():
+        parsed_row = row['dataset_id'].replace("'", '')
+
+        if dataset_id and parsed_row != dataset_id:
+            continue
+
         filled_sql = Template(sql_run).substitute(
             dataset_id=row['dataset_id'],
             dataset_view_id=row['view']
         )
 
         output.append(f"-- Query for view: {row['view']} / dataset: {row['dataset_id']}\n{filled_sql.strip()}\n")
-
     write_sql_response_file(output)
     pass
 
